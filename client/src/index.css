@@ -1,0 +1,22 @@
+.slider-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .destinos-display {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .flight-box {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .slider-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }

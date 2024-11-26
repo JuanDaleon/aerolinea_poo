@@ -1,18 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
+
 const DestinoComponent = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [origen, setOrigen] = useState("");
+  const [destino, setDestino] = useState("");
+  const [pasajeros, setPasajeros] = useState(1);
+  const [vuelos, setVuelos] = useState([]);
+  const [ciudades, setCiudades] = useState([]);
+
+  useEffect(() => {
+    // Obtener las ciudades disponibles para los campos de origen y destino
+    const fetchCiudades = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/aeropuertos/");
+        setCiudades(response.data);
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      }
+    };
+    fetchCiudades();
+  }, []);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get("http://localhost:8000/api/vuelos/", {
+        params: {
+          origen: origen,
+          destino: destino,
+          fecha_salida: startDate.toISOString().split('T')[0],
+          pasajeros: pasajeros,
+        },
+      });
+      setVuelos(response.data);
+    } catch (error) {
+      console.error("Error fetching flights:", error);
+    }
+  };
 
   return (
     <div className="booking-sec">
       <div className="container">
-        <form
-          action="mail.php"
-          method="POST"
-          className="booking-form ajax-contact"
-        >
+        <form onSubmit={handleSearch} className="booking-form">
           <div className="input-wrap">
             <div className="row align-items-center justify-content-between">
               <div className="form-group col-md-6 col-lg-auto">
@@ -21,9 +53,18 @@ const DestinoComponent = () => {
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Origen</label>
-                  <div className="nice-select form-select" tabIndex="0">
-                    <span className="current">Bogota (BOG)</span>
-                  </div>
+                  <select
+                    value={origen}
+                    onChange={(e) => setOrigen(e.target.value)}
+                    className="form-control"
+                  >
+                    <option value="">Seleccione</option>
+                    {ciudades.map((ciudad) => (
+                      <option key={ciudad.id} value={ciudad.nombre}>
+                        {ciudad.nombre}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className="form-group col-md-6 col-lg-auto">
@@ -32,29 +73,18 @@ const DestinoComponent = () => {
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Destino</label>
-                  <div className="nice-select" tabIndex="0">
-                    <span className="current">Seleccione</span>
-                    <ul className="list">
-                      <li
-                        data-value="Adventure"
-                        className="option selected disabled"
-                      >
-                        Seleccione
-                      </li>
-                      <li data-value="Beach" className="option">
-                        Beach
-                      </li>
-                      <li data-value="Group Tour" className="option">
-                        Group Tour
-                      </li>
-                      <li data-value="Couple Tour" className="option">
-                        Couple Tour
-                      </li>
-                      <li data-value="Family Tour" className="option">
-                        Family Tour
-                      </li>
-                    </ul>
-                  </div>
+                  <select
+                    value={destino}
+                    onChange={(e) => setDestino(e.target.value)}
+                    className="form-control"
+                  >
+                    <option value="">Seleccione</option>
+                    {ciudades.map((ciudad) => (
+                      <option key={ciudad.id} value={ciudad.nombre}>
+                        {ciudad.nombre}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className="form-group col-md-6 col-lg-auto">
@@ -63,31 +93,12 @@ const DestinoComponent = () => {
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Ida</label>
-                  <div className="nice-select form-select" tabIndex="0">
-                    <DatePicker
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
-                      dateFormat="dd/MM/yyyy"
-                      className="form-control date-picker"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-group col-md-6 col-lg-auto">
-                <div className="icon">
-                  <span className="material-symbols-outlined">calendar_month</span>
-                </div>
-                <div className="search-input" style={{ width: "120px" }}>
-                  <label>Vuelta</label>
-                  <div className="nice-select form-select" tabIndex="0">
-                    <DatePicker
-                      selected={endDate}
-                      onChange={(date) => setEndDate(date)}
-                      dateFormat="dd/MM/yyyy"
-                      className="form-control date-picker"
-                    />
-                  </div>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    dateFormat="dd/MM/yyyy"
+                    className="form-control date-picker"
+                  />
                 </div>
               </div>
               <div className="form-group col-md-6 col-lg-auto">
@@ -96,37 +107,37 @@ const DestinoComponent = () => {
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Pasajeros</label>
-                  <select
-                    name="subject"
-                    id="category"
-                    className="form-select nice-select"
-                    style={{ display: "none" }}
-                  >
-                    <option
-                      value="Normal"
-                      selected="selected"
-                      disabled="disabled"
-                    >
-                      Luxury
-                    </option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
-                  <div className="nice-select form-select" tabIndex="0">
-                    <span className="current">+ 1</span>
-                  </div>
+                  <input
+                    type="number"
+                    value={pasajeros}
+                    onChange={(e) => setPasajeros(e.target.value)}
+                    className="form-control"
+                    min="1"
+                  />
                 </div>
               </div>
               <div className="form-btn col-md-12 col-lg-auto">
-                <button className="th-btn">
+                <button className="th-btn" type="submit">
                   <img src="assets/img/icon/search.svg" alt="" />
                   Buscar
                 </button>
               </div>
             </div>
-            <p className="form-messages mb-0 mt-3"></p>
           </div>
         </form>
+        <div className="results">
+          {vuelos.length > 0 ? (
+            <ul>
+              {vuelos.map((vuelo) => (
+                <li key={vuelo.id}>
+                  {vuelo.origen} &gt; {vuelo.destino} ({vuelo.fecha_salida})
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No se encontraron vuelos.</p>
+          )}
+        </div>
       </div>
     </div>
   );

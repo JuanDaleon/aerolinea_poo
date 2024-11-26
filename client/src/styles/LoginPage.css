@@ -1,0 +1,391 @@
+
+.login-mode {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: var(--color-dark);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section input {
+    font-family: 'Poppins', sans-serif;
+}
+
+section .box {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    height: 640px;
+    background-color: var(--smoke-color2);
+    border-radius: 1.3rem;
+    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+section .inner-box {
+    position: absolute;
+    width: calc(100% - 4.1rem);
+    height: calc(100% - 4.1rem);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+section .forms-wrap {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: 0.8s ease-in-out;
+}
+
+section form {
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+section form.sign-up-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+section .logo {
+    display: flex;
+    align-items: center;
+}
+
+section .logo img {
+    width: 27px;
+    margin-right: 0.3rem;
+}
+
+section .logo h4 {
+    font-size: 1.1rem;
+    margin-top: -9px;
+    letter-spacing: -0.5px;
+    color: #151111;
+}
+
+section .heading h2 {
+    font-size: 3.1rem;
+    font-weight: 600;
+    color: #151111;
+}
+
+section .heading h6 {
+    color: #bababa;
+    font-weight: 400;
+    font-size: 0.90rem;
+    display: inline;
+}
+
+section .toggle {
+    color: #151111;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+section .toggle:hover {
+    color: var(--color-primary);
+}
+
+section .input-wrap {
+    position: relative;
+    height: 37px;
+    margin-bottom: 2rem;
+}
+
+section .input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #151111;
+    transition: 0.4s;
+    border-radius: 0;
+}
+
+section .input-field:focus {
+    background: var(--smoke-color2);
+}
+
+section label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+section .input-field.active {
+    border-bottom-color: #151111;
+}
+
+section .input-field.active+label {
+    font-size: 0.9rem;
+    top: -2px;
+}
+
+section .sign-btn {
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #151111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.99rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+section .sign-btn:hover {
+    background-color: var(--color-primary);
+}
+
+section .text {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+section .text a {
+    color: #bbb;
+    transition: 0.3s;
+}
+
+section .text a:hover {
+    color: #8371fd;
+}
+
+/* Estilos para la clase sign-up-mode */
+section.sign-up-mode form.sign-in-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+section.sign-up-mode form.sign-up-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+section.sign-up-mode .forms-wrap {
+    left: 55%;
+}
+
+section.sign-up-mode .carousel {
+    left: 0%;
+}
+
+section .carousel {
+    position: absolute;
+    height: 100%;
+    width: 55%;
+    left: 45%;
+    top: 0;
+    background-color: var(--color-dark);
+    border-radius: 1rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding-bottom: 2rem;
+    overflow: hidden;
+    transition: 0.8s ease-in-out;
+}
+
+section .images-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+section .image {
+    width: 100%;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.5s;
+}
+
+section .img-1 {
+    transform: translate(0, -50px);
+}
+
+section .img-2 {
+    transform: scale(0.4, 0.5);
+}
+
+section .img-3 {
+    transform: scale(0.3) rotate(-20deg);
+}
+
+section .image.show {
+    opacity: 1;
+    transform: none;
+}
+
+section .text-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+section .text-wrap {
+    max-height: 2.2rem;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+}
+
+section .text-group {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transform: translateY(0);
+    transition: 0.5s;
+}
+
+section .text-group h2 {
+    line-height: 2.2rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #131316;
+    text-transform: uppercase;
+}
+
+section .bullets {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section .bullets span {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #aaa;
+    margin: 0 0.25rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+section .bullets span.active {
+    width: 1.1rem;
+    background-color: #151111;
+    border-radius: 1rem;
+}
+
+@media (max-width: 850px) {
+    section .box {
+        height: auto;
+        max-width: 550px;
+        overflow: hidden;
+    }
+
+    section .inner-box {
+        position: static;
+        transform: none;
+        width: revert;
+        height: revert;
+        padding: 2rem;
+    }
+
+    section .forms-wrap {
+        position: revert;
+        width: 100%;
+        height: auto;
+    }
+
+    section form {
+        max-width: revert;
+        padding: 1.5rem 2.5rem 2rem;
+        transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+    }
+
+    section .heading {
+        margin: 2rem 0;
+    }
+
+    section form.sign-up-form {
+        transform: translateX(100%);
+    }
+
+    section.sign-up-mode form.sign-in-form {
+        transform: translateX(-100%);
+    }
+
+    section.sign-up-mode form.sign-up-form {
+        transform: translateX(0%);
+    }
+
+    section .carousel {
+        position: revert;
+        height: auto;
+        width: 100%;
+        padding: 3rem 2rem;
+        display: flex;
+    }
+
+    section .images-wrapper {
+        display: none;
+    }
+
+    section .text-slider {
+        width: 100%;
+    }
+}
+
+@media (max-width: 530px) {
+    section {
+        padding: 1rem;
+    }
+
+    section .box {
+        border-radius: 2rem;
+    }
+
+    section.inner-box {
+        padding: 1rem;
+    }
+
+    section .carousel {
+        padding: 1.5rem 1rem;
+        border-radius: 1.6rem;
+    }
+
+    section .text-wrap {
+        margin-bottom: 1rem;
+    }
+
+    section .text-group h2 {
+        font-size: 1.2rem;
+    }
+
+    section form {
+        padding: 1rem 2rem 1.5rem;
+    }
+}

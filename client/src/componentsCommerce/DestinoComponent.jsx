@@ -17,7 +17,7 @@ const DestinoComponent = () => {
             <div className="row align-items-center justify-content-between">
               <div className="form-group col-md-6 col-lg-auto">
                 <div className="icon">
-                  <span class="material-symbols-outlined">flight_takeoff</span>
+                  <span className="material-symbols-outlined">flight_takeoff</span>
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Origen</label>
@@ -28,7 +28,7 @@ const DestinoComponent = () => {
               </div>
               <div className="form-group col-md-6 col-lg-auto">
                 <div className="icon">
-                  <span class="material-symbols-outlined">flight_land</span>
+                  <span className="material-symbols-outlined">flight_land</span>
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Destino</label>
@@ -59,7 +59,7 @@ const DestinoComponent = () => {
               </div>
               <div className="form-group col-md-6 col-lg-auto">
                 <div className="icon">
-                  <span class="material-symbols-outlined">calendar_month</span>
+                  <span className="material-symbols-outlined">calendar_month</span>
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Ida</label>
@@ -76,7 +76,7 @@ const DestinoComponent = () => {
 
               <div className="form-group col-md-6 col-lg-auto">
                 <div className="icon">
-                  <span class="material-symbols-outlined">calendar_month</span>
+                  <span className="material-symbols-outlined">calendar_month</span>
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Vuelta</label>
@@ -92,7 +92,7 @@ const DestinoComponent = () => {
               </div>
               <div className="form-group col-md-6 col-lg-auto">
                 <div className="icon">
-                  <span class="material-symbols-outlined">person</span>
+                  <span className="material-symbols-outlined">person</span>
                 </div>
                 <div className="search-input" style={{ width: "120px" }}>
                   <label>Pasajeros</label>

@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "FlightManager",
+    "corsheaders",
+    "rest_framework",
+    "user_api",
+    "vuelos_api",
+    "api_aeropuerto",
+    "reservas_api",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +75,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "django_api.wsgi.application"
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+}
 
 
 # Database

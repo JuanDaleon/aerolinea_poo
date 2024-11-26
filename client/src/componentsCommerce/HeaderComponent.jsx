@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import images from "../images/images";
+import BarraAdicionalRightComponent from "../reusable/BarraAdicionalRightComponent";
+import LoginPage from "../componentsLogin/LoginPage"
 
 const HeaderComponent = () => {
+  const [isBarraAdicionalRightVisible, setIsBarraAdicionalRightVisible] = useState(false);
+
   const fechaActual = new Date();
   const opcionesFecha = { weekday: "long", day: "numeric", month: "long" };
   const fechaFormateada = fechaActual.toLocaleDateString(
@@ -26,7 +30,7 @@ const HeaderComponent = () => {
                       }}
                     >
                       <span
-                        class="material-symbols-outlined"
+                        className="material-symbols-outlined"
                         style={{ fontSize: "15px" }}
                       >
                         pin_drop
@@ -43,7 +47,7 @@ const HeaderComponent = () => {
                       }}
                     >
                       <span
-                        class="material-symbols-outlined"
+                        className="material-symbols-outlined"
                         style={{ fontSize: "15px" }}
                       >
                         schedule
@@ -69,7 +73,7 @@ const HeaderComponent = () => {
                   >
                     <span className="current">Español</span>
                     <span
-                      class="material-symbols-outlined"
+                      className="material-symbols-outlined"
                       style={{ fontSize: "15px" }}
                     >
                       language
@@ -85,7 +89,7 @@ const HeaderComponent = () => {
                       <a href="#">Soporte</a>
                     </li>
                     <li>
-                      <a href="#login-form" className="popup-content">
+                      <a style={{cursor: 'pointer'}} className="popup-content" onClick={() => setIsBarraAdicionalRightVisible(true)}>
                         Iniciar Sesion / Registrarse
                       </a>
                     </li>
@@ -121,7 +125,7 @@ const HeaderComponent = () => {
                       <a href="about.html">Ofertas y destinos</a>
                     </li>
                     <li>
-                      <a href="#">Destination</a>
+                      <a href="#">Destinos</a>
                     </li>
                     <li>
                       <a href="#">Tu reserva</a>
@@ -138,17 +142,17 @@ const HeaderComponent = () => {
                   <i className="far fa-bars"></i>
                 </button>
               </div>
-              <div className="col-auto d-none d-xl-block">
-                <div className="header-button">
-                  <a href="#" className="th-btn style3 th-icon">
-                    Comprar Ahora
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {isBarraAdicionalRightVisible && (
+        <BarraAdicionalRightComponent onClose={() => setIsBarraAdicionalRightVisible(false)}>
+          <LoginPage />
+        </BarraAdicionalRightComponent>
+        
+      )}
     </header>
   );
 };

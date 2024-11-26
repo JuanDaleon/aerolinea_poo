@@ -54,7 +54,7 @@ const VentaDestinoComponent = () => {
                     </h4>
                     <div className="tour-action">
                         <div style={{display: 'flex', gap: '.8rem', alignItems: 'center'}}>
-                            <span class="material-symbols-outlined" style={{fontSize: '20px'}}>
+                            <span className="material-symbols-outlined" style={{fontSize: '20px'}}>
                                 calendar_month
                             </span>
                             <span>7 Dias</span>
@@ -112,7 +112,7 @@ const VentaDestinoComponent = () => {
                     </h4>
                     <div className="tour-action">
                         <div style={{display: 'flex', gap: '.8rem', alignItems: 'center'}}>
-                            <span class="material-symbols-outlined" style={{fontSize: '20px'}}>
+                            <span className="material-symbols-outlined" style={{fontSize: '20px'}}>
                                 calendar_month
                             </span>
                             <span>7 Dias</span>
@@ -150,7 +150,7 @@ const VentaDestinoComponent = () => {
                     </h4>
                     <div className="tour-action">
                         <div style={{display: 'flex', gap: '.8rem', alignItems: 'center'}}>
-                            <span class="material-symbols-outlined" style={{fontSize: '20px'}}>
+                            <span className="material-symbols-outlined" style={{fontSize: '20px'}}>
                                 calendar_month
                             </span>
                             <span>7 Dias</span>
@@ -188,7 +188,7 @@ const VentaDestinoComponent = () => {
                     </h4>
                     <div className="tour-action">
                         <div style={{display: 'flex', gap: '.8rem', alignItems: 'center'}}>
-                            <span class="material-symbols-outlined" style={{fontSize: '20px'}}>
+                            <span className="material-symbols-outlined" style={{fontSize: '20px'}}>
                                 calendar_month
                             </span>
                             <span>7 Dias</span>
@@ -227,7 +227,7 @@ const VentaDestinoComponent = () => {
                     </h4>
                     <div className="tour-action">
                         <div style={{display: 'flex', gap: '.8rem', alignItems: 'center'}}>
-                            <span class="material-symbols-outlined" style={{fontSize: '20px'}}>
+                            <span className="material-symbols-outlined" style={{fontSize: '20px'}}>
                                 calendar_month
                             </span>
                             <span>7 Dias</span>
@@ -265,7 +265,7 @@ const VentaDestinoComponent = () => {
                     </h4>
                     <div className="tour-action">
                         <div style={{display: 'flex', gap: '.8rem', alignItems: 'center'}}>
-                            <span class="material-symbols-outlined" style={{fontSize: '20px'}}>
+                            <span className="material-symbols-outlined" style={{fontSize: '20px'}}>
                                 calendar_month
                             </span>
                             <span>7 Dias</span>

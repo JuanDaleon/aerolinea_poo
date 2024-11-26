@@ -1,0 +1,55 @@
+.barra-adicional-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    backdrop-filter: blur(3px); /* Aplicar desenfoque */
+    z-index: 999; /* Debajo de la barra lateral */
+    transition: opacity 0.5s ease; /* Transición suave */
+    opacity: 0; /* Inicialmente invisible */
+}
+
+.barra-adicional-overlay.active {
+    opacity: 1; /* Hacer visible cuando está activo */
+}
+
+.barra-adicional-sidebar {
+    position: fixed;
+    right: -700px; /* Inicialmente fuera de la vista */
+    top: 0;
+    width: 47%;
+    height: 100%;
+    background-color: var(--white-color);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.5s ease; /* Transición suave */
+}
+
+.barra-adicional-sidebar.active {
+    right: 0; /* Mover dentro de la vista cuando está activo */
+}
+
+.barra-adicional-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+}
+
+.barra-adicional-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

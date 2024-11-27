@@ -1,13 +1,70 @@
 
 .login-mode {
     width: 100%;
-    min-height: 100vh;
     overflow: hidden;
-    background-color: var(--color-dark);
-    padding: 2rem;
+    background-color: #fff;
     display: flex;
     align-items: center;
+    height: 100%;
     justify-content: center;
+}
+
+section .box {
+    height: auto;
+    max-width: 550px;
+    overflow: hidden;
+}
+
+section .inner-box {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+    padding: 2rem;
+}
+
+section .forms-wrap {
+    position: revert;
+    width: 100%;
+    height: auto;
+}
+
+section form {
+    max-width: revert;
+    padding: 1.5rem 2.5rem 2rem;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+}
+
+section .heading {
+    margin: 2rem 0;
+}
+
+section form.sign-up-form {
+    transform: translateX(100%);
+}
+
+section.sign-up-mode form.sign-in-form {
+    transform: translateX(-100%);
+}
+
+section.sign-up-mode form.sign-up-form {
+    transform: translateX(0%);
+}
+
+section .carousel {
+    position: revert;
+    height: auto;
+    width: 100%;
+    padding: 3rem 2rem;
+    display: flex;
+}
+
+section .images-wrapper {
+    display: none;
+}
+
+section .text-slider {
+    width: 100%;
 }
 
 section input {
@@ -17,25 +74,24 @@ section input {
 section .box {
     position: relative;
     width: 100%;
-    max-width: 1020px;
-    height: 640px;
-    background-color: var(--smoke-color2);
+    height: auto;
+    max-width: 550px;
+    overflow: hidden;
     border-radius: 1.3rem;
-    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
 }
 
 section .inner-box {
-    position: absolute;
-    width: calc(100% - 4.1rem);
-    height: calc(100% - 4.1rem);
+    position: static;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    width: revert;
+    height: revert;
+    transform: none;
 }
 
 section .forms-wrap {
-    position: absolute;
-    height: 100%;
+    position: revert;
+    height: auto;
     width: 100%;
     top: 0;
     left: 0;
@@ -46,7 +102,8 @@ section .forms-wrap {
 }
 
 section form {
-    max-width: 350px;
+    max-width: revert;
+    padding: 1.5rem 2.5rem 2rem;
     width: 100%;
     margin: 0 auto;
     height: 100%;
@@ -55,12 +112,14 @@ section form {
     justify-content: space-evenly;
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    transition: opacity 0.02s 0.4s;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+
 }
 
 section form.sign-up-form {
     opacity: 0;
     pointer-events: none;
+    transform: translateX(100%);
 }
 
 section .logo {
@@ -127,7 +186,7 @@ section .input-field {
 }
 
 section .input-field:focus {
-    background: var(--smoke-color2);
+    background: #fff;
 }
 
 section label {
@@ -165,7 +224,7 @@ section .sign-btn {
 }
 
 section .sign-btn:hover {
-    background-color: var(--color-primary);
+    background-color: red;
 }
 
 section .text {
@@ -182,19 +241,21 @@ section .text a:hover {
     color: #8371fd;
 }
 
-/* Estilos para la clase sign-up-mode */
 section.sign-up-mode form.sign-in-form {
     opacity: 0;
     pointer-events: none;
+    transform: translateX(-100%);
+
 }
 
 section.sign-up-mode form.sign-up-form {
     opacity: 1;
     pointer-events: all;
+    transform: translateX(0%);
 }
 
 section.sign-up-mode .forms-wrap {
-    left: 55%;
+    left: 0%;
 }
 
 section.sign-up-mode .carousel {
@@ -202,21 +263,22 @@ section.sign-up-mode .carousel {
 }
 
 section .carousel {
-    position: absolute;
-    height: 100%;
-    width: 55%;
+    position: revert;
+    height: auto;
+    width: 100%;
     left: 45%;
     top: 0;
     background-color: var(--color-dark);
     border-radius: 1rem;
-    display: grid;
+    display: flex;
     grid-template-rows: auto 1fr;
-    padding-bottom: 2rem;
+    padding: 3rem 2rem;
     overflow: hidden;
     transition: 0.8s ease-in-out;
 }
 
 section .images-wrapper {
+    display: none;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -252,6 +314,7 @@ section .text-slider {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
 }
 
 section .text-wrap {

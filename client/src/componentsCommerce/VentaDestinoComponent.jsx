@@ -47,7 +47,7 @@ const VentaDestinoComponent = () => {
                   </div>
                   <div className="tour-content">
                     <h3 className="box-title">
-                      <a href="tour-details.html">Greece Tour Package</a>
+                      <a href="#">Greece Tour Package</a>
                     </h3>
                     <h4 className="tour-box_price">
                       <span className="currency">$980.00</span>/Persona
@@ -60,7 +60,7 @@ const VentaDestinoComponent = () => {
                             <span>7 Dias</span>
                         </div>
                       <a
-                        href="contact.html"
+                        href="#"
                         className="th-btn style4 th-icon"
                       >
                         Comprar Ahora
@@ -86,27 +86,8 @@ const VentaDestinoComponent = () => {
                   </div>
                   <div className="tour-content">
                     <h3 className="box-title">
-                      <a href="tour-details.html">Italy Tour package</a>
+                      <a href="#">Italy Tour package</a>
                     </h3>
-                    <div className="tour-rating">
-                      <div
-                        className="star-rating"
-                        role="img"
-                        aria-label="Rated 5.00 out of 5"
-                      >
-                        <span style={{ width: "100%" }}>
-                          Rated <strong className="rating">5.00</strong> out of
-                          5 based on{" "}
-                          <span className="rating">4.8</span>(4.8 Rating)
-                        </span>
-                      </div>
-                      <a
-                        href="tour-details.html"
-                        className="woocommerce-review-link"
-                      >
-                        (<span className="count">4.8</span> Rating)
-                      </a>
-                    </div>
                     <h4 className="tour-box_price">
                       <span className="currency">$980.00</span>/Personaa
                     </h4>
@@ -118,7 +99,7 @@ const VentaDestinoComponent = () => {
                             <span>7 Dias</span>
                         </div>
                       <a
-                        href="contact.html"
+                        href="#"
                         className="th-btn style4 th-icon"
                       >
                         Comprar
@@ -143,7 +124,7 @@ const VentaDestinoComponent = () => {
                   </div>
                   <div className="tour-content">
                     <h3 className="box-title">
-                      <a href="tour-details.html">Nueva York</a>
+                      <a href="#">Nueva York</a>
                     </h3>
                     <h4 className="tour-box_price">
                       <span className="currency">$980.00</span>/Persona
@@ -156,7 +137,7 @@ const VentaDestinoComponent = () => {
                             <span>7 Dias</span>
                         </div>
                       <a
-                        href="contact.html"
+                        href="#"
                         className="th-btn style4 th-icon"
                       >
                         Comprar
@@ -181,7 +162,7 @@ const VentaDestinoComponent = () => {
                   </div>
                   <div className="tour-content">
                     <h3 className="box-title">
-                      <a href="tour-details.html">Valledupar</a>
+                      <a href="#">Valledupar</a>
                     </h3>
                     <h4 className="tour-box_price">
                       <span className="currency">$980.00</span>/Persona
@@ -194,7 +175,7 @@ const VentaDestinoComponent = () => {
                             <span>7 Dias</span>
                         </div>
                       <a
-                        href="contact.html"
+                        href="#"
                         className="th-btn style4 th-icon"
                       >
                         Comprar
@@ -219,7 +200,7 @@ const VentaDestinoComponent = () => {
                   </div>
                   <div className="tour-content">
                     <h3 className="box-title">
-                      <a href="tour-details.html">Panama</a>
+                      <a href="#">Panama</a>
                     </h3>
                     
                     <h4 className="tour-box_price">
@@ -233,7 +214,7 @@ const VentaDestinoComponent = () => {
                             <span>7 Dias</span>
                         </div>
                       <a
-                        href="contact.html"
+                        href="#"
                         className="th-btn style4 th-icon"
                       >
                         Comprar
@@ -258,7 +239,7 @@ const VentaDestinoComponent = () => {
                   </div>
                   <div className="tour-content">
                     <h3 className="box-title">
-                      <a href="tour-details.html">Paris</a>
+                      <a href="#">Paris</a>
                     </h3>
                     <h4 className="tour-box_price">
                       <span className="currency">$980.00</span>/Persona
@@ -271,7 +252,7 @@ const VentaDestinoComponent = () => {
                             <span>7 Dias</span>
                         </div>
                       <a
-                        href="contact.html"
+                        href="#"
                         className="th-btn style4 th-icon"
                       >
                         Comprar

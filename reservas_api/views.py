@@ -8,15 +8,15 @@ class ReservasManager(APIView):
     def get(self, request, reserva_id=None):
         if reserva_id:
             reserva = reservas_models.Reserva.objects.get(id=reserva_id)
-            serializer = reservas_serializers.ReservasSerializer(reserva)
+            serializer = reservas_serializers.ReservaSerializer(reserva)
             return Response(serializer.data)
         else:
             reservas = reservas_models.Reserva.objects.all()
-            serializer = reservas_serializers.ReservasSerializer(reservas, many=True)
+            serializer = reservas_serializers.ReservaSerializer(reservas, many=True)
             return Response(serializer.data)
         
     def post(self, request):
-        serializer = reservas_serializers.ReservasSerializer(data=request.data)
+        serializer = reservas_serializers.ReservaSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -24,7 +24,7 @@ class ReservasManager(APIView):
     
     def put(self, request, reserva_id):
         reserva = reservas_models.Reserva.objects.get(id=reserva_id)
-        serializer = reservas_serializers.ReservasSerializer(reserva, data=request.data)
+        serializer = reservas_serializers.ReservaSerializer(reserva, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

@@ -10,6 +10,7 @@ import bg_mas from './logo_bg_mask.png';
 import logoSvg from './logo.svg';
 import avionLogo from './avionlogo.png'
 import avionlogo2 from './avionlogo2.svg'
+import Avianca from './avianca.png'
 
 const images = {
     nuevayork,
@@ -23,7 +24,8 @@ const images = {
     bg_mas,
     logoSvg,
     avionLogo,
-    avionlogo2
+    avionlogo2,
+    Avianca
 };
 
 export default images;

@@ -34,3 +34,35 @@ class UserManager(APIView):
         user = user_models.User.objects.get(id=user_id)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+class LoginManager(APIView):
+    def post(self, request):
+        usuario = request.data.get('usuario')
+        password = request.data.get('password')
+        
+        try:
+            user = user_models.User.objects.get(usuario=usuario)
+        except user_models.User.DoesNotExist:
+            print('usuario no existe')
+            return Response({"error": "Usuario no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+        
+        print('user_id', user.id)
+        if user.password == password:
+            print('usuario logueado')
+            return Response({"message": "Login exito", "user_id": user.id}, status=status.HTTP_200_OK)
+        else:
+            print('usuario no logueado')
+            return Response({"error": "Credenciales inválidas"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+
+class RegisterManager(APIView):
+    def post(self, request):
+        serializer = user_serializers.UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            print('usuario registraod')
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        print('usuario no registrado')
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

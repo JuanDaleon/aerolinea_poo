@@ -73,10 +73,10 @@ const SliderComponent = () => {
                       data-ani-delay="0.6s"
                       style={{ animationDelay: "0.6s" }}
                     >
-                      <a href="tour.html" className="th-btn th-icon">
+                      <a href="#" className="th-btn th-icon">
                         Explorar Vuelos
                       </a>
-                      <a href="service.html" className="th-btn style2 th-icon">
+                      <a href="#" className="th-btn style2 th-icon">
                         Otros Servicios
                       </a>
                     </div>

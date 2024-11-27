@@ -1,10 +1,18 @@
 from django.db import models
 import api_aeropuerto.models as aeropuerto_models
 
+class Aerolinea(models.Model):
+    nombre = models.CharField(max_length=100, null=True, blank=True)
+    
+    def __str__(self):
+        return self.nombre
+
+
 class Avion(models.Model):
     matricula = models.CharField(max_length=10, null=True, blank=True)
     modelo = models.CharField(max_length=100, null=True, blank=True)
     capacidad = models.IntegerField(null=True, blank=True)
+    aerolinea = models.ForeignKey(Aerolinea, on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self):
         return f'{self.modelo} ({self.matricula})'

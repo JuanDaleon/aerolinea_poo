@@ -1,10 +1,36 @@
 import React, { useState, useEffect } from "react";
 import images from "../images/images";
 import BarraAdicionalRightComponent from "../reusable/BarraAdicionalRightComponent";
-import LoginPage from "../componentsLogin/LoginPage"
+import LoginPage from "../componentsLogin/LoginPage";
 
 const HeaderComponent = () => {
   const [isBarraAdicionalRightVisible, setIsBarraAdicionalRightVisible] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
+
+  useEffect(() => {
+    const usuario = localStorage.getItem('usuario');
+    if (usuario) {
+      setLoggedInUser(usuario);
+    }
+  }, []);
+
+  const handleLoginSuccess = (usuario) => {
+    setLoggedInUser(usuario);
+    setIsBarraAdicionalRightVisible(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    setLoggedInUser(null);
+    setIsSubmenuVisible(false);
+  };
+
+  const toggleSubmenu = () => {
+    setIsSubmenuVisible(!isSubmenuVisible);
+  };
 
   const fechaActual = new Date();
   const opcionesFecha = { weekday: "long", day: "numeric", month: "long" };
@@ -83,15 +109,30 @@ const HeaderComponent = () => {
                 <div className="header-links">
                   <ul>
                     <li className="d-none d-md-inline-block">
-                      <a href="faq.html">FAQ</a>
+                      <a href="#">FAQ</a>
                     </li>
                     <li className="d-none d-md-inline-block">
                       <a href="#">Soporte</a>
                     </li>
                     <li>
-                      <a style={{cursor: 'pointer'}} className="popup-content" onClick={() => setIsBarraAdicionalRightVisible(true)}>
-                        Iniciar Sesion / Registrarse
-                      </a>
+                      {loggedInUser ? (
+                        <div style={{ position: 'relative' }}>
+                          <span onClick={toggleSubmenu} style={{ cursor: 'pointer' }}>
+                            Bienvenido, {loggedInUser}
+                          </span>
+                          {isSubmenuVisible && (
+                            <div style={{ position: 'absolute', top: '100%', right: '0', backgroundColor: '#fff', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', borderRadius: '5px', padding: '10px' }}>
+                              <button onClick={handleLogout} style={{ cursor: 'pointer', background: 'none', border: 'none', color: '#000' }}>
+                                Cerrar Sesión
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <a style={{cursor: 'pointer'}} className="popup-content" onClick={() => setIsBarraAdicionalRightVisible(true)}>
+                          Iniciar Sesion / Registrarse
+                        </a>
+                      )}
                     </li>
                   </ul>
                 </div>
@@ -103,9 +144,8 @@ const HeaderComponent = () => {
 
       {isBarraAdicionalRightVisible && (
         <BarraAdicionalRightComponent onClose={() => setIsBarraAdicionalRightVisible(false)}>
-          <LoginPage />
+          <LoginPage onLoginSuccess={handleLoginSuccess} />
         </BarraAdicionalRightComponent>
-        
       )}
     </header>
   );

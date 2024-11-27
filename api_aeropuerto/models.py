@@ -22,3 +22,5 @@ class Aeropuerto(models.Model):
     
     def __str__(self):
         return self.nombre + ' - ' + self.ciudad.nombre + ' - ' + self.ciudad.pais.nombre
+    
+    

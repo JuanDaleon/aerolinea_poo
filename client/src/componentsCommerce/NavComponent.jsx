@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import images from "../images/images";
+import BarraAdicionalRightComponent from "../reusable/BarraAdicionalLeftComponent";
+import ReservasComponent from "../componentsReservas/ReservasComponent";
+import { Link } from "react-router-dom";
 
 const NavComponent = () => {
+  const [isBarraAdicionalRightVisible, setIsBarraAdicionalRightVisible] =
+    useState(false);
+
   return (
-    <div className="sticky-wrapper" style={{position: 'sticky', top: '0', zIndex: '34'}}>
+    <div
+      className="sticky-wrapper"
+      style={{ position: "sticky", top: "0", zIndex: "34" }}
+    >
       <div className="menu-area">
         <div className="container th-container">
           <div className="row align-items-center justify-content-between">
             <div className="col-auto">
               <div className="header-logo">
                 <a
-                  href="home-travel.html"
+                  href="#"
                   style={{ display: "flex", alignItems: "center", gap: "1rem" }}
                 >
                   <img
@@ -25,19 +34,23 @@ const NavComponent = () => {
               <nav className="main-menu d-none d-xl-inline-block">
                 <ul>
                   <li>
-                    <a className="active" href="home-travel.html">
+                    <a className="active" href="#">
                       Reservar
                     </a>
                   </li>
 
                   <li>
-                    <a href="about.html">Ofertas y destinos</a>
+                    <a href="#">Ofertas y destinos</a>
                   </li>
                   <li>
                     <a href="#">Destinos</a>
                   </li>
                   <li>
-                    <a href="#">Tu reserva</a>
+                    <Link to="/reservas"
+                      style={{ cursor: "pointer" }}
+                    >
+                      Tus reserva
+                    </Link>
                   </li>
                   <li>
                     <a href="#">Informacion y ayuda</a>

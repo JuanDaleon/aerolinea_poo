@@ -1,29 +1,72 @@
 import React from "react";
+import axios from "axios";
+import images from "../images/images";
 
 const ResultadosComponent = ({ vuelos }) => {
   console.log(vuelos);
 
+  const getImageForAirline = (airlineName) => {
+    const imageMap = {
+      Avianca: images.Avianca,
+    };
+    return imageMap[airlineName] || images.default;
+  };
+
+  const handleReservar = async (vueloId, precio) => {
+    const usuario = localStorage.getItem('usuario');
+    const accessToken = localStorage.getItem('access_token');
+    const usuarioId = localStorage.getItem('user_id');
+
+    if (!usuario || !accessToken) {
+      alert("Debe iniciar sesión para reservar.");
+      return;
+    }
+
+    console.log('id_usuario', usuarioId)
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/reservas/",
+        {
+          vuelo: vueloId,
+          precio: precio,
+          fecha: new Date().toISOString().split('T')[0],
+          pasajero: usuarioId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      alert("Reserva realizada con éxito.");
+    } catch (error) {
+      console.error("Error al realizar la reserva:", error.response.data);
+      alert("Error al realizar la reserva.");
+    }
+  };
+
   return (
     <div className="results">
       {vuelos.length > 0 ? (
-          <h3 style={{marginBottom: '1rem'}}>Vuelos Disponibles</h3>
+        <h3 style={{ marginBottom: "1rem" }}>Vuelos Disponibles</h3>
       ) : (
-          <h3 style={{marginBottom: '1rem'}}>No hay vuelos disponibles</h3>
+        <h3 style={{ marginBottom: "1rem" }}></h3>
       )}
       {vuelos.length > 0 ? (
-        <div style={{display: 'flex', flexDirection: 'column', gap: '2.5rem'}}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
           {vuelos.map((vuelo) => (
             <div
+              key={vuelo.id}
               style={{
                 width: "100%",
-                padding: ".9rem 2rem",
+                padding: "0rem 2rem",
                 borderRadius: "40px",
                 backgroundColor: "#fafafa",
                 boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
               }}
             >
               <div
-                key={vuelo.id}
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -35,7 +78,7 @@ const ResultadosComponent = ({ vuelos }) => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     width: "100%",
-                    height: '100%'
+                    height: "100%",
                   }}
                 >
                   <div
@@ -58,17 +101,13 @@ const ResultadosComponent = ({ vuelos }) => {
                       }}
                     >
                       <h3 style={{ margin: "0" }}>
-                        {new Date(
-                          `1970-01-01T${vuelo.hora_salida}`
-                        ).toLocaleTimeString([], {
+                        {new Date(`1970-01-01T${vuelo.hora_salida}`).toLocaleTimeString([], {
                           hour: "2-digit",
                           minute: "2-digit",
                           hour12: false,
                         })}
                       </h3>
-                      <h6 style={{ margin: "0" }}>
-                        {vuelo.ciudad_origen.nombre}
-                      </h6>
+                      <h6 style={{ margin: "0" }}>{vuelo.ciudad_origen.nombre}</h6>
                     </div>
 
                     <div
@@ -119,17 +158,13 @@ const ResultadosComponent = ({ vuelos }) => {
                       }}
                     >
                       <h3 style={{ margin: "0" }}>
-                        {new Date(
-                          `1970-01-01T${vuelo.hora_llegada}`
-                        ).toLocaleTimeString([], {
+                        {new Date(`1970-01-01T${vuelo.hora_llegada}`).toLocaleTimeString([], {
                           hour: "2-digit",
                           minute: "2-digit",
                           hour12: false,
                         })}
                       </h3>
-                      <h6 style={{ margin: "0" }}>
-                        {vuelo.ciudad_destino.nombre}
-                      </h6>
+                      <h6 style={{ margin: "0" }}>{vuelo.ciudad_destino.nombre}</h6>
                     </div>
                   </div>
 
@@ -144,6 +179,12 @@ const ResultadosComponent = ({ vuelos }) => {
                       alignItems: "center",
                     }}
                   >
+                    <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
+                      <div style={{width: '70px'}}>
+                        <img src={getImageForAirline(vuelo.aerolinea.nombre)} alt={vuelo.aerolinea.nombre} />
+                      </div>
+                    </div>
+
                     <div style={{ display: "flex", flexDirection: "column" }}>
                       <p style={{ margin: "0" }}>Desde:</p>
                       <div
@@ -169,7 +210,8 @@ const ResultadosComponent = ({ vuelos }) => {
                     >
                       <button
                         className="th-btn"
-                        style={{ padding: "2px 10px", borderRadius: "20px", gap: '0'}}
+                        style={{ padding: "2px 10px", borderRadius: "20px", gap: "0" }}
+                        onClick={() => handleReservar(vuelo.avion, vuelo.precio)}
                       >
                         Reservar
                       </button>
@@ -202,9 +244,7 @@ const ResultadosComponent = ({ vuelos }) => {
               alignItems: "center",
             }}
           >
-            <span className="material-symbols-outlined">
-              airplanemode_inactive
-            </span>
+            <span className="material-symbols-outlined">airplanemode_inactive</span>
             <h6>No hay vuelos disponibles este día</h6>
           </div>
         </div>

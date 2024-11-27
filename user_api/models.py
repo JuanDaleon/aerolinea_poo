@@ -5,6 +5,8 @@ class User(models.Model):
     nombre = models.CharField(max_length=100, null=True, blank=True)
     apellido = models.CharField(max_length=100, null=True, blank=True)
     correo = models.EmailField(max_length=100, null=True, blank=True)
+    password = models.CharField(max_length=100, null=True, blank=True)
+    usuario = models.CharField(max_length=100, null=True, blank=True)
     telefono = models.CharField(max_length=20, null=True, blank=True)
     numero_documento = models.CharField(max_length=20, null=True, blank=True)
     tipo_documento = models.CharField(max_length=20, null=True, blank=True)

@@ -8,8 +8,6 @@ import NavComponent from "../componentsCommerce/NavComponent.jsx";
 const CommercePage = () => {
     return (
         <div>
-            <HeaderComponent />
-            <NavComponent />
             <SliderComponent />
             <DestinoComponent />
             <VentaDestinoComponent />

@@ -2,21 +2,42 @@ import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import Select from 'react-select';
+import ResultadosComponent from "../componentsResultados/Resultado";
+
+import BarraAdicionalLeftComponent from "../reusable/BarraAdicionalLeftComponent";
 
 const DestinoComponent = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [origen, setOrigen] = useState("");
-  const [destino, setDestino] = useState("");
+  const [origen, setOrigen] = useState(null);
+  const [destino, setDestino] = useState(null);
   const [pasajeros, setPasajeros] = useState(1);
   const [vuelos, setVuelos] = useState([]);
   const [ciudades, setCiudades] = useState([]);
+  const [isBarraAdicionalLeftVisible, setIsBarraAdicionalLeftVisible] = useState(false);
+
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      border: 'none',
+      boxShadow: 'none',
+      padding: '0px 0px',
+    }),
+    indicatorSeparator: () => ({
+      display: 'none',
+    }),
+  };
 
   useEffect(() => {
-    // Obtener las ciudades disponibles para los campos de origen y destino
     const fetchCiudades = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/aeropuertos/");
-        setCiudades(response.data);
+        const ciudadesOptions = response.data.map(ciudad => ({
+          value: ciudad.nombre,
+          label: `${ciudad.ciudad.nombre}, ${ciudad.ciudad.pais.nombre}`
+        }));
+        setCiudades(ciudadesOptions);
       } catch (error) {
         console.error("Error fetching cities:", error);
       }
@@ -29,8 +50,8 @@ const DestinoComponent = () => {
     try {
       const response = await axios.get("http://localhost:8000/api/vuelos/", {
         params: {
-          origen: origen,
-          destino: destino,
+          origen: origen ? origen.value : "",
+          destino: destino ? destino.value : "",
           fecha_salida: startDate.toISOString().split('T')[0],
           pasajeros: pasajeros,
         },
@@ -51,40 +72,30 @@ const DestinoComponent = () => {
                 <div className="icon">
                   <span className="material-symbols-outlined">flight_takeoff</span>
                 </div>
-                <div className="search-input" style={{ width: "120px" }}>
+                <div className="search-input" style={{ width: "200px" }}>
                   <label>Origen</label>
-                  <select
+                  <Select
                     value={origen}
-                    onChange={(e) => setOrigen(e.target.value)}
-                    className="form-control"
-                  >
-                    <option value="">Seleccione</option>
-                    {ciudades.map((ciudad) => (
-                      <option key={ciudad.id} value={ciudad.nombre}>
-                        {ciudad.nombre}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={setOrigen}
+                    options={ciudades}
+                    placeholder="Seleccione"
+                    styles={customStyles}
+                  />
                 </div>
               </div>
               <div className="form-group col-md-6 col-lg-auto">
                 <div className="icon">
                   <span className="material-symbols-outlined">flight_land</span>
                 </div>
-                <div className="search-input" style={{ width: "120px" }}>
+                <div className="search-input" style={{ width: "200px" }}>
                   <label>Destino</label>
-                  <select
+                  <Select
                     value={destino}
-                    onChange={(e) => setDestino(e.target.value)}
-                    className="form-control"
-                  >
-                    <option value="">Seleccione</option>
-                    {ciudades.map((ciudad) => (
-                      <option key={ciudad.id} value={ciudad.nombre}>
-                        {ciudad.nombre}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={setDestino}
+                    options={ciudades}
+                    placeholder="Seleccione"
+                    styles={customStyles}
+                  />
                 </div>
               </div>
               <div className="form-group col-md-6 col-lg-auto">
@@ -117,7 +128,7 @@ const DestinoComponent = () => {
                 </div>
               </div>
               <div className="form-btn col-md-12 col-lg-auto">
-                <button className="th-btn" type="submit">
+                <button className="th-btn" type="submit" onClick={() => setIsBarraAdicionalLeftVisible(true)}>
                   <img src="assets/img/icon/search.svg" alt="" />
                   Buscar
                 </button>
@@ -125,19 +136,12 @@ const DestinoComponent = () => {
             </div>
           </div>
         </form>
-        <div className="results">
-          {vuelos.length > 0 ? (
-            <ul>
-              {vuelos.map((vuelo) => (
-                <li key={vuelo.id}>
-                  {vuelo.origen} &gt; {vuelo.destino} ({vuelo.fecha_salida})
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No se encontraron vuelos.</p>
-          )}
-        </div>
+        {isBarraAdicionalLeftVisible && (
+        <BarraAdicionalLeftComponent onClose={() => setIsBarraAdicionalLeftVisible(false)}>
+          <ResultadosComponent vuelos={vuelos} />
+        </BarraAdicionalLeftComponent>
+        
+      )}
       </div>
     </div>
   );

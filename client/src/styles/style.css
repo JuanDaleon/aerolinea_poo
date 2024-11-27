@@ -1011,7 +1011,6 @@ select {
   width:100%;
   line-height:1.5;
   vertical-align:middle;
-  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
   background-position:right 26px center;
   background-repeat:no-repeat;
   background-size:16px 12px;

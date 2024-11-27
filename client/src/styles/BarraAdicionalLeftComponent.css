@@ -21,7 +21,7 @@
     top: 0;
     width: 48%;
     height: 100%;
-    background-color: var(--color-light);
+    background-color: var(--white-color);
     z-index: 1000;
     display: flex;
     flex-direction: column;

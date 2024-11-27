@@ -8,7 +8,7 @@ class VuelosManager(APIView):
     def get(self, request, vuelo_id=None):
         if vuelo_id:
             vuelo = vuelos_models.Vuelo.objects.get(id=vuelo_id)
-            serializer = vuelos_serializers.VuelosSerializer(vuelo)
+            serializer = vuelos_serializers.VueloSerializer(vuelo)
             return Response(serializer.data)
         else:
             origen = request.query_params.get('origen', None)
@@ -24,14 +24,14 @@ class VuelosManager(APIView):
                 vuelos = vuelos.filter(fecha_salida=fecha_salida)
             vuelos_disponibles = []
             for vuelo in vuelos:
-                asientos_disponibles = vuelo.asiento_set.filter(disponibilidad=True).count()
+                asientos_disponibles = vuelo.avion.asiento_set.filter(disponibilidad=True).count()
                 if asientos_disponibles >= pasajeros:
                     vuelos_disponibles.append(vuelo)
-            serializer = vuelos_serializers.VuelosSerializer(vuelos_disponibles, many=True)
+            serializer = vuelos_serializers.VueloSerializer(vuelos_disponibles, many=True)
             return Response(serializer.data)
     
     def post(self, request):
-        serializer = vuelos_serializers.VuelosSerializer(data=request.data)
+        serializer = vuelos_serializers.VueloSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -39,7 +39,7 @@ class VuelosManager(APIView):
 
     def put(self, request, vuelo_id):
         vuelo = vuelos_models.Vuelo.objects.get(id=vuelo_id)
-        serializer = vuelos_serializers.VuelosSerializer(vuelo, data=request.data)
+        serializer = vuelos_serializers.VueloSerializer(vuelo, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

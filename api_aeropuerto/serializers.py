@@ -1,4 +1,3 @@
-# serializers.py
 from rest_framework import serializers
 import api_aeropuerto.models as aeropuerto_models
 

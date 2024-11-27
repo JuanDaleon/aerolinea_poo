@@ -137,7 +137,7 @@ const DestinoComponent = () => {
           </div>
         </form>
         {isBarraAdicionalLeftVisible && (
-        <BarraAdicionalLeftComponent onClose={() => setIsBarraAdicionalLeftVisible(false)}>
+        <BarraAdicionalLeftComponent onClose={() => setIsBarraAdicionalLeftVisible(false)} initialWidth="70%">
           <ResultadosComponent vuelos={vuelos} />
         </BarraAdicionalLeftComponent>
         

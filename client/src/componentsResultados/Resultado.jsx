@@ -8,6 +8,7 @@ const ResultadosComponent = ({ vuelos }) => {
   const getImageForAirline = (airlineName) => {
     const imageMap = {
       Avianca: images.Avianca,
+      Latam: images.Latam,
     };
     return imageMap[airlineName] || images.default;
   };
@@ -42,11 +43,14 @@ const ResultadosComponent = ({ vuelos }) => {
         }
       );
       alert("Reserva realizada con éxito.");
+      setReservas([...reservas, response.data]);
     } catch (error) {
       console.error("Error al realizar la reserva:", error.response.data);
       alert("Error al realizar la reserva.");
     }
   };
+
+  
 
   return (
     <div className="results">

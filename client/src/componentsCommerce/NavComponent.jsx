@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import images from "../images/images";
-import BarraAdicionalRightComponent from "../reusable/BarraAdicionalLeftComponent";
-import ReservasComponent from "../componentsReservas/ReservasComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavComponent = () => {
-  const [isBarraAdicionalRightVisible, setIsBarraAdicionalRightVisible] =
-    useState(false);
+  const navigate = useNavigate();
+
+  const handleReservasClick = (e) => {
+    e.preventDefault();
+
+    const usuario = localStorage.getItem("usuario");
+    const accessToken = localStorage.getItem("access_token");
+
+    if (usuario && accessToken) {
+      navigate('/reservas');
+    } else {
+      navigate('/');
+    }
+  };
 
   return (
     <div
@@ -34,13 +44,10 @@ const NavComponent = () => {
               <nav className="main-menu d-none d-xl-inline-block">
                 <ul>
                   <li>
-                    <Link to="/"
-                      style={{ cursor: "pointer" }}
-                    >
+                    <Link to="/" style={{ cursor: "pointer" }}>
                       Reservar
                     </Link>
                   </li>
-
                   <li>
                     <a href="#">Ofertas y destinos</a>
                   </li>
@@ -48,14 +55,16 @@ const NavComponent = () => {
                     <a href="#">Destinos</a>
                   </li>
                   <li>
-                    <Link to="/reservas"
+                    <a
+                      href="#"
                       style={{ cursor: "pointer" }}
+                      onClick={handleReservasClick}
                     >
-                      Tus reserva
-                    </Link>
+                      Tus reservas
+                    </a>
                   </li>
                   <li>
-                    <a href="#">Informacion y ayuda</a>
+                    <a href="#">Información y ayuda</a>
                   </li>
                 </ul>
               </nav>

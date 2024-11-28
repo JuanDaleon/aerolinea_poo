@@ -11,6 +11,7 @@ import logoSvg from './logo.svg';
 import avionLogo from './avionlogo.png'
 import avionlogo2 from './avionlogo2.svg'
 import Avianca from './avianca.png'
+import Latam from './latam.svg'
 
 const images = {
     nuevayork,
@@ -25,7 +26,8 @@ const images = {
     logoSvg,
     avionLogo,
     avionlogo2,
-    Avianca
+    Avianca,
+    Latam,
 };
 
 export default images;

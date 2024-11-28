@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import images from "../images/images";
 
 const VentaDestinoComponent = () => {
+  const [vuelos, setVuelos] = useState([]);
+  useEffect(() => {
+    const fetchVuelos = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/vuelos/');
+        const vuelosBogota = response.data.filter(
+          (vuelo) => vuelo.ciudad_origen.nombre === 'Bogota'
+        );
+        setVuelos(vuelosBogota);
+      } catch (error) {
+        console.error("Error al obtener los vuelos:", error);
+      }
+    };
+    fetchVuelos();
+  }, []);
+
+  console.log(vuelos);
+
+  const getImageForDestination = (destino) => {
+    const imageMap = {
+      'Nueva York': images.nuevayork,
+      'Valledupar': images.valledupar,
+      'Panama': images.panama,
+      'Paris': images.paris,
+    };
+    return imageMap[destino] || images.defaultImage;
+  };
+
+  
   return (
     <section
       className="position-relative bg-top-center overflow-hidden space background-image arrow-wrap"

@@ -11,6 +11,7 @@ const ReservasComponent = () => {
   const getImageForAirline = (airlineName) => {
     const imageMap = {
       Avianca: images.Avianca,
+      Latam: images.Latam,
     };
     return imageMap[airlineName] || images.default;
   };

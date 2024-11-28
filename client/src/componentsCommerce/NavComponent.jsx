@@ -34,9 +34,11 @@ const NavComponent = () => {
               <nav className="main-menu d-none d-xl-inline-block">
                 <ul>
                   <li>
-                    <a className="active" href="#">
+                    <Link to="/"
+                      style={{ cursor: "pointer" }}
+                    >
                       Reservar
-                    </a>
+                    </Link>
                   </li>
 
                   <li>

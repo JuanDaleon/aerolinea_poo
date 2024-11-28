@@ -16,7 +16,6 @@ const DestinoComponent = () => {
   const [ciudades, setCiudades] = useState([]);
   const [isBarraAdicionalLeftVisible, setIsBarraAdicionalLeftVisible] = useState(false);
 
-
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -47,12 +46,13 @@ const DestinoComponent = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    const formattedDate = startDate.toISOString().split('T')[0];
     try {
       const response = await axios.get("http://localhost:8000/api/vuelos/", {
         params: {
           origen: origen ? origen.value : "",
           destino: destino ? destino.value : "",
-          fecha_salida: startDate.toISOString().split('T')[0],
+          fecha_salida: formattedDate,
           pasajeros: pasajeros,
         },
       });

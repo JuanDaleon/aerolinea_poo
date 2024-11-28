@@ -17,12 +17,14 @@ const ResultadosComponent = ({ vuelos }) => {
     const accessToken = localStorage.getItem('access_token');
     const usuarioId = localStorage.getItem('user_id');
 
+
     if (!usuario || !accessToken) {
       alert("Debe iniciar sesión para reservar.");
       return;
     }
 
     console.log('id_usuario', usuarioId)
+    console.log('id_vuelo', vueloId)
 
     try {
       const response = await axios.post(

@@ -1,8 +1,6 @@
-
-
 .grid-responsive {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 5rem;
+  grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+  grid-gap: 2rem;
   width: 100%;
 }

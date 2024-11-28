@@ -10,6 +10,7 @@ class Reserva(models.Model):
     pasajero = models.ForeignKey(user_models.User, on_delete=models.CASCADE, null=True, blank=True)
     vuelo = models.ForeignKey(vuelos_models.Vuelo, on_delete=models.CASCADE, null=True, blank=True)
     
+    
     def __str__(self):
         return f'{self.pasajero} - {self.vuelo} ({self.fecha})'
 
